@@ -14,8 +14,75 @@ Având în vedere matricea costurilor pentru conectarea diferitelor cartiere, pr
 un algoritm pentru a determina costul minim pentru conectarea întregului oraș la 
 utilități. Comparați diferite abordări și analizați care este mai eficientă pentru 
 această aplicație specifică.
-*/
 
+==========================================================================
+a. Structura de date folosita
+-structura de date aleasa a fost o matrice de adiacenta pentru a putea reprezenta
+un graf neorientat ponderat. Astfel pentru aflarea costul minim am folosit atat
+algoritmul lui prim cat si algoritmul lui kruskal.
+
+a. Justificarea alegerii
+- folosirea unei matrici de adiacenta este ideala deoarece avem un numar mic de noduri,
+tot numarul de noduri nu se modifica des, faciliteaza vizualizarea grafului neorientat.
+Folosirea unei liste simplu inlantuite nu aducea un avantaj foarte mare din punct de
+vedere al performantei, deci matricea de adiacenta este mai favorabila, deoarece evitem 
+alocarea dinamica pt o dimensiune redusa si totodata nu vom avea memory leaks pt ca totul
+este static.
+
+c. Exemplu 
+Input:
+10
+1 3 3
+1 8 4
+2 3 5
+2 6 2
+3 7 5
+3 9 6
+4 1 23
+4 0 2
+4 2 12
+5 4 1
+5 2 5
+6 5 8
+6 8 5
+7 2 15
+7 6 1
+8 7 3
+8 3 4
+9 1 2
+9 8 3
+
+Output:
+Costul minim de acoperire a cartierelor cu Prim:
+Cartierul 0 <---> Cartierul 4 => Cost 2
+Cartierul 4 <---> Cartierul 5 => Cost 1
+Cartierul 5 <---> Cartierul 2 => Cost 5
+Cartierul 2 <---> Cartierul 6 => Cost 2
+Cartierul 6 <---> Cartierul 7 => Cost 1
+Cartierul 7 <---> Cartierul 8 => Cost 3
+Cartierul 8 <---> Cartierul 9 => Cost 3
+Cartierul 9 <---> Cartierul 1 => Cost 2
+Cartierul 1 <---> Cartierul 3 => Cost 3
+Costul total este de 22!
+
+Costul minim de acoperire a cartierelor cu Kruskal:
+Cartierul 4 <---> Cartierul 5 => Cost 1
+Cartierul 6 <---> Cartierul 7 => Cost 1
+Cartierul 0 <---> Cartierul 4 => Cost 2
+Cartierul 1 <---> Cartierul 9 => Cost 2
+Cartierul 2 <---> Cartierul 6 => Cost 2
+Cartierul 1 <---> Cartierul 3 => Cost 3
+Cartierul 7 <---> Cartierul 8 => Cost 3
+Cartierul 8 <---> Cartierul 9 => Cost 3
+Cartierul 2 <---> Cartierul 5 => Cost 5
+Costul total este de 22!
+
+d. Raționamentul pe scurt
+- folosim atat algoritmul lui prim cat si algoritmul lui kruskal pentru a putea
+afla cost minim pentru arbore de acoperire minima. Astfel ambii algoritmi folosesc
+un tablou pentru marcare nodurilor vizitate si un contor cu care calculam costul total
+minim pentru cartierul dat.
+*/
 #include<stdio.h>
 #include<stdlib.h>
 
