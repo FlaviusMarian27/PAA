@@ -22,10 +22,57 @@ un graf neorientat ponderat. Astfel doua noduri pot fi prieteni daca ponderea di
 - am ales folosirea unei matrice de adiacenta pentru ca numarul de noduri nu se modifica
 des, avem un numar mic de noduri, iar un alt avantaj ar fi ca nu folosim liste simplu 
 inlantuite pentru ca avem un numar mic de noduri, deci nu ar putea sa aduca un plus pt 
-performanta rezultand in cele din urma ca nu folosim alocari dinamice, deci rezulta ca 
+performanta rezultand in cele din urma ca nu folosim alocari dinamice si ca 
 nu vom avea memory leaks uri. Matricea de adiacenta mai o ofera un avantaj pentru 
 vizualizarea mai usoara a legaturilor dintre noduri, codul este unul simplu, accesul 
 la valori fiind O(1).
+
+3)Exemplu
+Input:
+13
+0 1
+1 2
+2 0
+3 4
+3 7
+5 6
+6 7
+7 5
+8 1
+8 9
+10 11
+12 9
+12 8
+
+Output:
+Matricea de adiacenta(13 x 13):
+0 1 1 0 0 0 0 0 0 0 0 0 0 
+1 0 1 0 0 0 0 0 1 0 0 0 0 
+1 1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 1 0 0 1 0 0 0 0 0 
+0 0 0 1 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 1 1 0 0 0 0 0 
+0 0 0 0 0 1 0 1 0 0 0 0 0 
+0 0 0 1 0 1 1 0 0 0 0 0 0 
+0 1 0 0 0 0 0 0 0 1 0 0 1 
+0 0 0 0 0 0 0 0 1 0 0 0 1 
+0 0 0 0 0 0 0 0 0 0 0 1 0 
+0 0 0 0 0 0 0 0 0 0 1 0 0 
+0 0 0 0 0 0 0 0 1 1 0 0 0 
+
+1) Numarul de grupuri este 3
+2) Grupul cel mai mare are 6 prieteni
+3) Punctele de articulatie (utilizatori care sunt punti):
+Utilizatorul 1 este un punct de articulatie
+Utilizatorul 3 este un punct de articulatie
+Utilizatorul 7 este un punct de articulatie
+Utilizatorul 8 este un punct de articulatie
+
+4)Rationament:
+- dupa ce alegem sa stocam si sa reprezentam tot graful prin intermediul unui matrice de
+adiacenta, pentru a putea determina numarul de grupuri existente ne folosim de parcurgerea
+in adancime pentru a putea numar cate grupuri exista, respectiv grupul care este cel mai
+numeros si pentru numarul de puncte de articulatii.
 
 */
 #include<stdio.h>
